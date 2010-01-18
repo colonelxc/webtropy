@@ -1,0 +1,23 @@
+Webtropy - Gives your network traffic entropy by browsing the web for you.
+
+NOTE: This is currently in development, and doesn't even do all of the things it claims to do below.
+
+What this means:
+
+If your web traffic is being monitored (and/or you're paranoid), this program should help throw them off the track.  By generating a bunch of "noise" in your network traffic, it'll be a little harder to single out your network traffic from the rest.
+
+What it doesn't mean:
+
+This wont hide your web traffic.  Your web traffic will still happen, and still show up in the logs somewhere.  The goal of this is to make it harder to discern which traffic is actually yours.  As this is a work in progress, it may not even do a good job at that even.
+
+What it could mean:
+
+Since this is semi-randomly browsing the web, it could end up on some embarassing sites, or make some embarassing searches.  The author is not liable for what this program searches for, its content is derived from several online sources, and sometimes bad things can get through the filters.
+
+Running:
+
+This program depends on the module BeautifulSoup. <add installation instructions>
+
+To run:
+
+Python webtropy.py
