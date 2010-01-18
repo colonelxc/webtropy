@@ -1,0 +1,7 @@
+# .gitignore
+
+# ignore compiled "pyc" files
+*.pyc
+
+#ignore vim .swp files
+*.swp
