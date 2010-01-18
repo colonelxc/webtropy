@@ -1,0 +1,7 @@
+POST /dogpile/ws/service/DPServices.asmx/GetSearchSpy HTTP/1.1
+Host: www.dogpile.com
+Accept: text/html
+Content-Type: application/json; charset=utf-8
+Content-Length: 29
+
+{"numTerms":50,"filter":true}
