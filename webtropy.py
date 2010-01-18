@@ -16,9 +16,8 @@ class temp(threading.Thread):
 
     def run(self):
         while True:
-            vaar= EntropyQueue.urls.get()
-            for var in vaar:
-                print var
+            var= EntropyQueue.urls.get()
+            print var
             time.sleep(5)
 
 

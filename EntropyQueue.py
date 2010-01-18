@@ -6,7 +6,7 @@
 #  Copyright (c) 2009
 #
 
-import threading, Queue, random, time, calendar
+import threading, Queue, random, time, calendar, urllib
 from EntropySources import dogpile
 from EntropySources import googlehottrends
 from EntropySources import wordlist
@@ -30,8 +30,8 @@ class EntropyQueue(threading.Thread):
         # Add sources here (and in the import statements)
         # tuple is of the form:
         # ("next_time_we_can_run_this_function,source.min_time_between_requests,source.getTerms())
-        #self.sourcelist.append((0,dogpile.min_time_between_requests,dogpile.getTerms))
-        #self.sourcelist.append((0,googlehottrends.min_time_between_requests,googlehottrends.getTerms))
+        self.sourcelist.append((0,dogpile.min_time_between_requests,dogpile.getTerms))
+        self.sourcelist.append((0,googlehottrends.min_time_between_requests,googlehottrends.getTerms))
         self.sourcelist.append((0,wordlist.min_time_between_requests,wordlist.getTerms))
         
         while True:
@@ -71,6 +71,7 @@ class EntropyQueue(threading.Thread):
             return []
         
         for term in termlist:
+            term = urllib.quote_plus(term)
             searchengine = self.rand.randint(1,3)
             if searchengine == 1:
                 urllist.append("http://www.google.com/q=" + term)

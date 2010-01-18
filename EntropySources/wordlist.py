@@ -10,21 +10,24 @@ import os, sys, stat
 import random
 
 #Time in seconds
-min_time_between_requests=100
-wordlist_timestamp=0
+min_time_between_requests = 100
+wordlist_timestamp = 50
 wordlist = []
 chunk_size = 50
+print wordlist_timestamp
+print chunk_size
 
 def getTerms():
+    global wordlist_timestamp
     wordlist_stat = os.stat('./EntropySources/wordlist.txt')
     if wordlist_stat.st_mtime > wordlist_timestamp:
         wordlist_timestamp = wordlist_stat.st_mtime
         read_file()
-    elif wordlist.count() < chunk_size:
+    elif len(wordlist) < chunk_size:
         read_file()
     
     returnlist = []
-    for num in range(min(chunk_size,wordlist.count())):
+    for num in range(min(chunk_size,len(wordlist))):
         returnlist.append(wordlist.pop(0))
         
     return returnlist
@@ -32,6 +35,7 @@ def getTerms():
         
 
 def adjust_time(list_size=0):
+    global min_time_between_requests
     """Adjusts the min_time_between_requests so that if the wordlist doesn't change, we only reuse it once per hour."""
     if list_size == 0:
         return
@@ -43,6 +47,7 @@ def adjust_time(list_size=0):
     
 
 def read_file():
+    global wordlist
     temp_wordlist = []
     f = open('./EntropySources/wordlist.txt','r')
     for line in f:
@@ -52,5 +57,5 @@ def read_file():
             
     random.shuffle(temp_wordlist)
     wordlist.extend(temp_wordlist)
-    adjust_time(temp_wordlist.count())
+    adjust_time(len(temp_wordlist))
     
